@@ -1,6 +1,6 @@
 import sys
 from PyQt5.QtCore import *
-from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox, QTableWidgetItem
+from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox, QTableWidgetItem, QHeaderView
 from MainWindow import Ui_MainWindow
 import pymysql
 
@@ -42,10 +42,14 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
         vol = len(data[0])
         self.tableWidget.setRowCount(row)
         self.tableWidget.setColumnCount(vol)
+        # 设置表格头为伸缩模式
+        self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.tableWidget.setHorizontalHeaderLabels(['零件编号', '零件名称', '入库数量', '零件价格', '供应商名字'])
         for i in range(row):
             for j in range(vol):
-                self.tableWidget.setItem(i, j, QTableWidgetItem(str(data[i][j])))
+                newItem = QTableWidgetItem(str(data[i][j]))
+                newItem.setTextAlignment(Qt.AlignHCenter | Qt.AlignVCenter)
+                self.tableWidget.setItem(i, j, newItem)
         cur.close()
         conn.close()
 
@@ -61,10 +65,14 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
         vol = len(data[0])
         self.tableWidget_2.setRowCount(row)
         self.tableWidget_2.setColumnCount(vol)
+        # 设置表格头为伸缩模式
+        self.tableWidget_2.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.tableWidget_2.setHorizontalHeaderLabels(['零件编号', '零件名称', '出库数量', '零件价格', '领取部门'])
         for i in range(row):
             for j in range(vol):
-                self.tableWidget_2.setItem(i, j, QTableWidgetItem(str(data[i][j])))
+                newItem = QTableWidgetItem(str(data[i][j]))
+                newItem.setTextAlignment(Qt.AlignHCenter | Qt.AlignVCenter)
+                self.tableWidget_2.setItem(i, j, newItem)
         cur.close()
         conn.close()
 
@@ -80,10 +88,14 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
         vol = len(data[0])
         self.tableWidget_3.setRowCount(row)
         self.tableWidget_3.setColumnCount(vol)
+        # 设置表格头为伸缩模式
+        self.tableWidget_3.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.tableWidget_3.setHorizontalHeaderLabels(['库存总量', '零件编号', '零件名称', '零件规格', '零件价格'])
         for i in range(row):
             for j in range(vol):
-                self.tableWidget_3.setItem(i, j, QTableWidgetItem(str(data[i][j])))
+                newItem = QTableWidgetItem(str(data[i][j]))
+                newItem.setTextAlignment(Qt.AlignHCenter | Qt.AlignVCenter)
+                self.tableWidget_3.setItem(i, j, newItem)
         cur.close()
         conn.close()
 
